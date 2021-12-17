@@ -42,8 +42,7 @@ jobs:
       #     solution-file: ${{ runner.temp }}/${{ env.solution_name }}/${{ env.solution_name }}.zip
       #     solution-type: Both
       
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: artifact
-      #     path: ${{ runner.temp }}/${{ env.solution_name }}
-      #
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: ${{ runner.temp }}/${{ env.solution_name }}      
