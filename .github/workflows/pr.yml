@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          dotnet build plugins\pacmaptest.plugins -c release
+          dotnet build src\solutions\pacmaptest\plugins\pacmaptest.plugins -c release
 
 
 
