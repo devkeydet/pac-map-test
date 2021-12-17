@@ -4,21 +4,21 @@ on:
     branches:
       - main
 env:
-  solution_src_root: src/solutions/pacmaptest
+  solution_name: pacmaptest
+  solution_src_root: src/solutions/${{ env.solution_name }}
   
 jobs:
   pr:
-    runs-on: windows-latest
+    # Getting map errors about wildcards.  Switch to windows fixed it.  Need to revisit 
+    runs-on: windows-latest 
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          lfs: true
 
       - name: build-plugin
         shell: bash
         run: |
-          dotnet build $solution_src_root/plugins/pacmaptest.plugins -c release
+          dotnet build $solution_src_root/plugins/$solution_name.plugins -c release
       
       # Until GitHub Actions for Power Platform doesn't require us to use pac direcly
       # for certain commands, we need to use it directly.  So we set the path to pac
@@ -30,7 +30,7 @@ jobs:
         shell: bash
         env:
           solution_folder: ${{ env.solution_src_root }}/unpack-src
-          solution_file: ${{ runner.temp }}/pacmaptest/pacmaptest.zip
+          solution_file: ${{ runner.temp }}/${{ env.solution_name }}/${{ env.solution_name }}.zip
           map_file: ${{ env.solution_src_root }}/map.xml
         run: |
           pac solution pack -f $solution_folder -z $solution_file -m $map_file -p both
@@ -39,11 +39,11 @@ jobs:
       #   uses: microsoft/powerplatform-actions/pack-solution@0.4.3
       #   with:
       #     solution-folder: s${{ env.solution_src_root }}/unpack-src
-      #     solution-file: ${{ runner.temp }}/pacmaptest/pacmaptest.zip
+      #     solution-file: ${{ runner.temp }}/${{ env.solution_name }}/${{ env.solution_name }}.zip
       #     solution-type: Both
       
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: artifact
-      #     path: ${{ runner.temp }}/pacmaptest
+      #     path: ${{ runner.temp }}/${{ env.solution_name }}
       #
