@@ -12,6 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          lfs: true
+           
       - name: build-plugin
         run: |
           dotnet build src/solutions/pacmaptest/plugins/pacmaptest.plugins -c release
