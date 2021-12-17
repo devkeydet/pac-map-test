@@ -27,6 +27,7 @@ jobs:
         uses: ./.github/actions/set-pac-path
       
       - name: pack-solution
+        shell: bash
         env:
           solution_folder: ${{ env.solution_src_root }}/unpack-src
           solution_file: ${{ runner.temp }}/pacmaptest/pacmaptest.zip
