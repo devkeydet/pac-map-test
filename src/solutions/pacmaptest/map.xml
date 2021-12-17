@@ -3,4 +3,6 @@
     <!-- Match specific named files to an alternate folder -->
     <FileToFile map="pacmaptestplugins.dll"
         to="..\plugins\pacmaptest.plugins\bin\**\pacmaptest.plugins.dll" />
+    <FileToPath map="Controls\**\*.*"
+        to="..\pcf-components\**" />
 </Mapping>

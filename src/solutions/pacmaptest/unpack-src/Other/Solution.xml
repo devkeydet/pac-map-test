@@ -78,6 +78,7 @@
       </Addresses>
     </Publisher>
     <RootComponents>
+      <RootComponent type="66" schemaName="cat_PcfAlm.DynamicTextInput" behavior="0" />
       <RootComponent type="91" id="{d17fd708-baf5-4441-8261-0099cc098de7}" schemaName="pacmaptest.plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=96986864d1208a76" behavior="0" />
     </RootComponents>
     <MissingDependencies />

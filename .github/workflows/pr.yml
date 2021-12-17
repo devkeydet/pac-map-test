@@ -18,10 +18,12 @@ jobs:
       - name: build
         shell: pwsh
         run: |
+          echo 'build plugin'
           $build = $env:solution_src_root + '/plugins/' + $env:solution_name + '.plugins'
           dotnet build $build -c release
           $currentDirectory = Get-Location
           cd $env:solution_src_root/pcf-components/DynamicTextInput
+          echo 'build pcf'
           npm install          
           dotnet build -c release
           cd $currentDirectory
