@@ -26,10 +26,10 @@ jobs:
         uses: ./.github/actions/set-pac-path
       
       - name: pack-solution
-        with:
+        env:
           solution_folder: ${{ env.solution_src_root }}/unpack-src
           solution_file: ${{ runner.temp }}/pacmaptest/pacmaptest.zip
-          solution_type: Both
+          solution_type: both
           map_file: ${{ env.solution_src_root }}/map.xml
         run: |
           echo $solution_folder
