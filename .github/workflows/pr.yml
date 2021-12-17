@@ -19,6 +19,7 @@ jobs:
         shell: bash
         run: |
           dotnet build $solution_src_root/plugins/$solution_name.plugins -c release
+          dotnet build $solution_src_root/pcf-components/DynamicTextInput -c release
       
       # Until GitHub Actions for Power Platform doesn't require us to use pac direcly
       # for certain commands, we need to use it directly.  So we set the path to pac
