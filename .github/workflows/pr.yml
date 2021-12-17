@@ -9,7 +9,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: |
+      - name: build-plugins
+        shell: pwsh
+        run: |
           dotnet build src\solutions\pacmaptest\plugins\pacmaptest.plugins -c release
 
 
