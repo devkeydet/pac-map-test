@@ -32,7 +32,10 @@ jobs:
           solution_type: Both
           map_file: ${{ env.solution_src_root }}/map.xml
         run: |
-          pac solution pack -f $solution_folder -z $solution_file -m $map_file -p $solution_type
+          echo $solution_folder
+          echo $solution_file
+          echo $solution_type
+          echo $map_file
 
       # - name: pack-solution
       #   uses: microsoft/powerplatform-actions/pack-solution@0.4.3
