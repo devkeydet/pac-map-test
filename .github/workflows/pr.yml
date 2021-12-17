@@ -5,8 +5,8 @@ on:
       - main
 env:
   solution_name: pacmaptest
-  solution_src_root: src/solutions/${{ env.solution_name }}
-  
+  solution_src_root: src/solutions/pacmaptest
+
 jobs:
   pr:
     # Getting map errors about wildcards.  Switch to windows fixed it.  Need to revisit 
@@ -41,6 +41,7 @@ jobs:
       #     solution-folder: s${{ env.solution_src_root }}/unpack-src
       #     solution-file: ${{ runner.temp }}/${{ env.solution_name }}/${{ env.solution_name }}.zip
       #     solution-type: Both
+      #     NO_MAP: Need this to use action directly
       
       - uses: actions/upload-artifact@v2
         with:
