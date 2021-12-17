@@ -16,6 +16,7 @@ jobs:
           lfs: true
 
       - name: build-plugin
+        shell: bash
         run: |
           dotnet build $solution_src_root/plugins/pacmaptest.plugins -c release
       
