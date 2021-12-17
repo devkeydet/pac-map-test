@@ -16,18 +16,27 @@ jobs:
           lfs: true
 
       - name: build-plugin
+        shell: pwsh
         run: |
           dotnet build src/solutions/pacmaptest/plugins/pacmaptest.plugins -c release
-          dir src/solutions/pacmaptest/unpack-src
-
-      - name: pack-solution
-        uses: microsoft/powerplatform-actions/pack-solution@0.4.3
-        with:
-          solution-folder: src/solutions/pacmaptest/unpack-src
-          solution-file: ${{ runner.temp }}/pacmaptest/pacmaptest.zip
-          solution-type: Both
       
-      - uses: actions/upload-artifact@v2
-        with:
-          name: artifact
-          path: ${{ runner.temp }}/${{ env.solution_name }}
+      # Until GitHub Actions for Power Platform doesn't require us to use pac direcly
+      # for certain commands, we need to use it directly.  So we set the path to pac
+      # that ships with the Actions
+      - name: set-pac-path
+        uses: ./.github/actions/set-pac-path
+      
+      - run: |
+          pac
+
+      # - name: pack-solution
+      #   uses: microsoft/powerplatform-actions/pack-solution@0.4.3
+      #   with:
+      #     solution-folder: src/solutions/pacmaptest/unpack-src
+      #     solution-file: ${{ runner.temp }}/pacmaptest/pacmaptest.zip
+      #     solution-type: Both
+      
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: artifact
+      #     path: ${{ runner.temp }}/${{ env.solution_name }}
