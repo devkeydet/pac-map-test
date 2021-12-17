@@ -29,13 +29,9 @@ jobs:
         env:
           solution_folder: ${{ env.solution_src_root }}/unpack-src
           solution_file: ${{ runner.temp }}/pacmaptest/pacmaptest.zip
-          solution_type: both
           map_file: ${{ env.solution_src_root }}/map.xml
         run: |
-          echo $solution_folder
-          echo $solution_file
-          echo $solution_type
-          echo $map_file
+          pac solution pack -f $solution_folder -z $solution_file -m $map_file -p both
 
       # - name: pack-solution
       #   uses: microsoft/powerplatform-actions/pack-solution@0.4.3
