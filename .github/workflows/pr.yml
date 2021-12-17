@@ -14,14 +14,14 @@ jobs:
       - uses: actions/checkout@v2
         with:
           lfs: true
-           
+
       - name: build-plugin
         run: |
           dotnet build src/solutions/pacmaptest/plugins/pacmaptest.plugins -c release
           dir src/solutions/pacmaptest/unpack-src
 
       - name: pack-solution
-        uses: microsoft/powerplatform-actions/pack-solution@latest
+        uses: microsoft/powerplatform-actions/pack-solution@0.4.3
         with:
           solution-folder: src/solutions/pacmaptest/unpack-src
           solution-file: ${{ runner.temp }}/pacmaptest/pacmaptest.zip
