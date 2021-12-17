@@ -12,10 +12,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: build-plugins
+      - name: build-plugin
         shell: pwsh
         run: |
           dotnet build src\solutions\pacmaptest\plugins\pacmaptest.plugins -c release
+          dir
 
       - name: pack-solution
         uses: microsoft/powerplatform-actions/pack-solution@latest
