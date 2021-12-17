@@ -15,6 +15,7 @@ jobs:
       - name: build-plugin
         run: |
           dotnet build src/solutions/pacmaptest/plugins/pacmaptest.plugins -c release
+          dir src/solutions/pacmaptest/unpack-src
 
       - name: pack-solution
         uses: microsoft/powerplatform-actions/pack-solution@latest
