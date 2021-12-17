@@ -17,7 +17,7 @@ jobs:
 
       - name: build-plugin
         run: |
-          dotnet build $solution_src_root/plugins/pacmaptest.plugins -c release
+          dotnet build '$solution_src_root/plugins/pacmaptest.plugins' -c release
       
       # Until GitHub Actions for Power Platform doesn't require us to use pac direcly
       # for certain commands, we need to use it directly.  So we set the path to pac
