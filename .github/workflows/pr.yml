@@ -3,8 +3,8 @@ on:
   pull_request:
     branches:
       - main
-# env:
-#   solution-name: pacmaptest
+env:
+  solution_src_root: solution_src_root
   
 jobs:
   pr:
@@ -16,9 +16,8 @@ jobs:
           lfs: true
 
       - name: build-plugin
-        shell: pwsh
         run: |
-          dotnet build src/solutions/pacmaptest/plugins/pacmaptest.plugins -c release
+          dotnet build $solution_src_root/plugins/pacmaptest.plugins -c release
       
       # Until GitHub Actions for Power Platform doesn't require us to use pac direcly
       # for certain commands, we need to use it directly.  So we set the path to pac
@@ -26,17 +25,23 @@ jobs:
       - name: set-pac-path
         uses: ./.github/actions/set-pac-path
       
-      - run: |
-          pac
+      - name: pack-solution
+        with:
+          solution_folder: ${{ env.solution_src_root }}/unpack-src
+          solution_file: ${{ runner.temp }}/pacmaptest/pacmaptest.zip
+          solution_type: Both
+          map_file: ${{ env.solution_src_root }}/map.xml
+        run: |
+          pac solution pack -f $solution_folder -z $solution_file -m $map_file -p $solution_type
 
       # - name: pack-solution
       #   uses: microsoft/powerplatform-actions/pack-solution@0.4.3
       #   with:
-      #     solution-folder: src/solutions/pacmaptest/unpack-src
+      #     solution-folder: s${{ env.solution_src_root }}/unpack-src
       #     solution-file: ${{ runner.temp }}/pacmaptest/pacmaptest.zip
       #     solution-type: Both
       
       # - uses: actions/upload-artifact@v2
       #   with:
       #     name: artifact
-      #     path: ${{ runner.temp }}/${{ env.solution_name }}
+      #     path: ${{ runner.temp }}/pacmaptest
