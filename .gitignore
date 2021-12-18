@@ -353,3 +353,6 @@ MigrationBackup/
 **/Controls/*/*
 !**/Controls/*/ControlManifest.xml.data.xml
 **/PluginAssemblies/**/*.dll
+
+
+/temp

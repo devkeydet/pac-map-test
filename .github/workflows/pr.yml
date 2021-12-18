@@ -9,7 +9,6 @@ env:
 
 jobs:
   pr:
-    # Getting map errors about wildcards.  Switch to windows fixed it.  Need to revisit 
     runs-on: windows-latest 
 
     steps:
@@ -18,40 +17,11 @@ jobs:
       - name: build
         shell: pwsh
         run: |
-          # echo 'build plugin'
-          # $build = $env:solution_src_root + '/plugins/' + $env:solution_name + '.plugins'
-          # dotnet build $build -c release
           $currentDirectory = Get-Location
           cd $env:solution_src_root/pcf-components/DynamicTextInput
-          # echo 'build pcf'
-          npm install          
-          # dotnet build -c release
+          npm install
           cd $currentDirectory
-          echo 'build'
           dotnet build $env:solution_src_root -c release
-      
-      # Until GitHub Actions for Power Platform doesn't require us to use pac direcly
-      # for certain commands, we need to use it directly.  So we set the path to pac
-      # that ships with the Actions
-      # - name: set-pac-path
-      #   uses: ./.github/actions/set-pac-path
-      
-      # - name: pack-solution
-      #   shell: bash
-      #   env:
-      #     solution_folder: ${{ env.solution_src_root }}/unpack-src
-      #     solution_file: ${{ runner.temp }}/${{ env.solution_name }}/${{ env.solution_name }}.zip
-      #     map_file: ${{ env.solution_src_root }}/map.xml
-      #   run: |
-      #     pac solution pack -f $solution_folder -z $solution_file -m $map_file -p both
-
-      # - name: pack-solution
-      #   uses: microsoft/powerplatform-actions/pack-solution@0.4.3
-      #   with:
-      #     solution-folder: ${{ env.solution_src_root }}/unpack-src
-      #     solution-file: ${{ runner.temp }}/${{ env.solution_name }}/${{ env.solution_name }}.zip
-      #     solution-type: Both
-      #     NO_MAP: Need this to use action directly
       
       - uses: actions/upload-artifact@v2
         with:
