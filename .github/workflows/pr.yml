@@ -21,12 +21,12 @@ jobs:
           # echo 'build plugin'
           # $build = $env:solution_src_root + '/plugins/' + $env:solution_name + '.plugins'
           # dotnet build $build -c release
-          # $currentDirectory = Get-Location
-          # cd $env:solution_src_root/pcf-components/DynamicTextInput
+          $currentDirectory = Get-Location
+          cd $env:solution_src_root/pcf-components/DynamicTextInput
           # echo 'build pcf'
-          # npm install          
+          npm install          
           # dotnet build -c release
-          # cd $currentDirectory
+          cd $currentDirectory
           echo 'build'
           dotnet build $env:solution_src_root -c release
       
