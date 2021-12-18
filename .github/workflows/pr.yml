@@ -27,3 +27,14 @@ jobs:
         with:
           name: artifact
           path: ${{ env.solution_src_root }}/bin/Release      
+      
+      - name: import-solution
+        uses: microsoft/powerplatform-actions/import-solution@v0
+        with:
+          environment-url: ${{ secrets.ENVIRONMENT_URL }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          app-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          solution-file: ${{ env.solution_src_root }}/bin/Release/${{ env.solution_name }}_managed.zip 
+          force-overwrite: true
+          run-asynchronously: true
