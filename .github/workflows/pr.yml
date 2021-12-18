@@ -23,13 +23,14 @@ jobs:
           cd $currentDirectory
           dotnet build $env:solution_src_root -c release
       
-      - uses: actions/upload-artifact@v2
+      - name: upload-artifact
+        uses: actions/upload-artifact@v2
         with:
           name: artifact
           path: ${{ env.solution_src_root }}/bin/Release      
       
       - name: import-solution
-        uses: microsoft/powerplatform-actions/import-solution@v0
+        uses: microsoft/powerplatform-actions/import-solution@0.4.3
         with:
           environment-url: ${{ secrets.ENVIRONMENT_URL }}
           tenant-id: ${{ secrets.TENANT_ID }}
