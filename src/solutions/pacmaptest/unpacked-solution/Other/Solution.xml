@@ -78,9 +78,27 @@
       </Addresses>
     </Publisher>
     <RootComponents>
-      <RootComponent type="66" schemaName="cat_PcfAlm.DynamicTextInput" behavior="0" />
+      <RootComponent type="1" schemaName="account" behavior="2" />
+      <RootComponent type="62" schemaName="cat_PCFtestmda" behavior="0" />
+      <RootComponent type="66" schemaName="cat_pacmaptest.DynamicTextInput" behavior="0" />
+      <RootComponent type="80" schemaName="cat_PCFtestmda" behavior="0" />
       <RootComponent type="91" id="{d17fd708-baf5-4441-8261-0099cc098de7}" schemaName="pacmaptest.plugins, Version=1.0.0.0, Culture=neutral, PublicKeyToken=96986864d1208a76" behavior="0" />
     </RootComponents>
-    <MissingDependencies />
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="60" displayName="account contact card" parentDisplayName="Contact" solution="msdynce_AppCommon (9.0.4.0066)" id="{29de27bc-a257-4f29-99cf-bab4a84e688f}">
+          <package>msdynce_AppCommonAnchor (9.0.21111.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="PCF Form" parentDisplayName="Account" id="{b6c4c42f-e05c-ec11-8f8f-0022482a2107}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)" />
+        <Dependent type="80" schemaName="cat_PCFtestmda" displayName="PCF test mda" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2111.1015)" />
+        <Dependent type="60" displayName="PCF Form" parentDisplayName="Account" id="{b6c4c42f-e05c-ec11-8f8f-0022482a2107}" />
+      </MissingDependency>
+    </MissingDependencies>
   </SolutionManifest>
 </ImportExportXml>

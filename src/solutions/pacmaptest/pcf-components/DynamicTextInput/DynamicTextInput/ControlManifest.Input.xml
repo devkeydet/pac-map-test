@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="PcfAlm"
+  <control namespace="pacmaptest"
     constructor="DynamicTextInput"
     version="0.0.1"
     display-name-key="DynamicTextInput"
