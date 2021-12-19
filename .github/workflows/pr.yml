@@ -16,14 +16,17 @@ jobs:
 
       - name: build
         shell: pwsh
-        run: |
+        run: |          
           $currentDirectory = Get-Location
           $componentFolders = Get-ChildItem $env:solution_src_root/pcf-components
+          echo 'Running npm install for all pcf components...'
           foreach ($componentFolder in $componentFolders) {
+            echo $componentFolder + '...'
             cd $componentFolder.FullName
             npm install
           }
           cd $currentDirectory
+          echo 'Building cdsproj for solution...'
           dotnet build $env:solution_src_root -c release
       
       - name: upload-artifact
