@@ -27,7 +27,7 @@ jobs:
           }
           cd $currentDirectory
           echo 'Building cdsproj for solution...'
-          dotnet build $env:solution_src_root -c release
+          dotnet build $env:solution_src_root -c Release
       
       - name: upload-artifact
         uses: actions/upload-artifact@v2
