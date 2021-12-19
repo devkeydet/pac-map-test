@@ -55,15 +55,13 @@
     <ProjectReference Include="plugins\pacmaptest.plugins\pacmaptest.plugins.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <pacmaptestplugins Include="plugins\pacmaptest.plugins\bin\$(Configuration)\**\pacmaptest.plugins.dll"/>
-  </ItemGroup>
-
+  <!-- Manually added to ensure plugin dll gets copied before solution pack -->
   <Target Name="CopyPluginAssemblies" AfterTargets="ResolveReferences">
     <Message Text="Copying plugin assemblies..." Importance="high"/>
     <Copy
-      SourceFiles="@(pacmaptestplugins)"
+      SourceFiles="plugins\pacmaptest.plugins\bin\$(Configuration)\$(TargetFramework)\pacmaptest.plugins.dll"
       DestinationFiles="unpacked-solution\PluginAssemblies\pacmaptestplugins-D17FD708-BAF5-4441-8261-0099CC098DE7\pacmaptestplugins.dll" />
+      <!-- Note that Dataverse doesn't support dll names with '.' in them.  Therefore, destination dll has the '.'' removed -->
   </Target>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
