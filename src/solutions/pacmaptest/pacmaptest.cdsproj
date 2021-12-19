@@ -60,7 +60,7 @@
   </ItemGroup>
 
   <Target Name="CopyPluginAssemblies" AfterTargets="ResolveReferences">
-    <Message Text="Copying plugin assembly..." Importance="high"/>
+    <Message Text="Copying plugin assemblies..." Importance="high"/>
     <Copy
       SourceFiles="@(pacmaptestplugins)"
       DestinationFiles="unpacked-solution\PluginAssemblies\pacmaptestplugins-D17FD708-BAF5-4441-8261-0099CC098DE7\pacmaptestplugins.dll" />
