@@ -2,7 +2,7 @@
 <manifest>
   <control namespace="pacmaptest"
     constructor="DynamicTextInput"
-    version="0.0.1"
+    version="0.0.2"
     display-name-key="DynamicTextInput"
     description-key="DynamicTextInput_Desc"
     control-type="standard">
