@@ -25,7 +25,8 @@ jobs:
             cd $componentFolder.FullName
             npm install
           }
-          
+          cd $currentDirectory
+
           echo 'Building cdsproj for solution...'
           cd $env:solution_src_root
           dotnet build -c Release
