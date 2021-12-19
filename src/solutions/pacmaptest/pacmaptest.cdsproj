@@ -57,12 +57,9 @@
 
   <Target Name="CopyPluginAssembly" AfterTargets="ResolveReferences">
     <Message Text="Copying plugin assembly..." Importance="high"/>
-    <!-- <Copy
-            SourceFiles="plugins\pacmaptest.plugins\bin\Release\net462\pacmaptest.plugins.dll"
-            DestinationFolder="src\solutions\pacmaptest\unpacked-solution\PluginAssemblies\pacmaptestplugins-D17FD708-BAF5-4441-8261-0099CC098DE7"
-        /> -->
-    <Exec 
-      Command="copy plugins\pacmaptest.plugins\bin\Release\net462\pacmaptest.plugins.dll unpacked-solution\PluginAssemblies\pacmaptestplugins-D17FD708-BAF5-4441-8261-0099CC098DE7\pacmaptestplugins.dll"/>
+    <Copy
+      SourceFiles="plugins\pacmaptest.plugins\bin\Release\net462\pacmaptest.plugins.dll"
+      DestinationFiles="unpacked-solution\PluginAssemblies\pacmaptestplugins-D17FD708-BAF5-4441-8261-0099CC098DE7\pacmaptestplugins.dll" />
   </Target>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
