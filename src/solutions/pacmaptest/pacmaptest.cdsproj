@@ -63,7 +63,7 @@
     <Message Text="Copying plugin assemblies..." Importance="high"/>
     <Copy
       SourceFiles="@(pacmaptestplugins)"
-      DestinationFiles="obj\$(Configuration)\Metadata\PluginAssemblies\pacmaptestplugins-D17FD708-BAF5-4441-8261-0099CC098DE7\pacmaptestplugins.dll" />
+      DestinationFiles="unpacked-solution\PluginAssemblies\pacmaptestplugins-D17FD708-BAF5-4441-8261-0099CC098DE7\pacmaptestplugins.dll" />
   </Target>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
