@@ -27,7 +27,7 @@ namespace pacmaptest.plugins
             var context = localPluginContext.PluginExecutionContext;
 
             string echoMe = (string)context.InputParameters["EchoMe"];
-            context.OutputParameters["EcoOutput"] = echoMe;
+            context.OutputParameters["EcoOutput"] = $"{echoMe}-updated";
         }
     }
 }

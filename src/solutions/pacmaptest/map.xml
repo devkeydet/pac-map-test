@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Mapping>
-    <!-- Match specific named files to an alternate folder -->
-    <FileToFile map="pacmaptestplugins.dll"
-        to="..\plugins\pacmaptest.plugins\bin\**\pacmaptest.plugins.dll" />
-</Mapping>

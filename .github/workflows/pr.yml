@@ -9,41 +9,43 @@ env:
 
 jobs:
   pr:
-    # Getting map errors about wildcards.  Switch to windows fixed it.  Need to revisit 
-    runs-on: windows-latest 
+    runs-on: ubuntu-latest 
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: build-plugin
-        shell: bash
-        run: |
-          dotnet build $solution_src_root/plugins/$solution_name.plugins -c release
-      
-      # Until GitHub Actions for Power Platform doesn't require us to use pac direcly
-      # for certain commands, we need to use it directly.  So we set the path to pac
-      # that ships with the Actions
-      - name: set-pac-path
-        uses: ./.github/actions/set-pac-path
-      
-      - name: pack-solution
-        shell: bash
-        env:
-          solution_folder: ${{ env.solution_src_root }}/unpack-src
-          solution_file: ${{ runner.temp }}/${{ env.solution_name }}/${{ env.solution_name }}.zip
-          map_file: ${{ env.solution_src_root }}/map.xml
-        run: |
-          pac solution pack -f $solution_folder -z $solution_file -m $map_file -p both
+      - name: build
+        shell: pwsh
+        run: |          
+          $currentDirectory = Get-Location
+          $componentFolders = Get-ChildItem $env:solution_src_root/pcf-components
+          echo 'Running npm install for all pcf components...'
+          foreach ($componentFolder in $componentFolders) {
+            echo $componentFolder + '...'
+            cd $componentFolder.FullName
+            npm install
+          }
+          cd $currentDirectory
 
-      # - name: pack-solution
-      #   uses: microsoft/powerplatform-actions/pack-solution@0.4.3
-      #   with:
-      #     solution-folder: s${{ env.solution_src_root }}/unpack-src
-      #     solution-file: ${{ runner.temp }}/${{ env.solution_name }}/${{ env.solution_name }}.zip
-      #     solution-type: Both
-      #     NO_MAP: Need this to use action directly
+          echo 'Building cdsproj for solution...'
+          cd $env:solution_src_root
+          dotnet build -c Release
+
+          cd $currentDirectory
       
-      - uses: actions/upload-artifact@v2
+      - name: upload-artifact
+        uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: ${{ runner.temp }}/${{ env.solution_name }}      
+          path: ${{ env.solution_src_root }}/bin/Release      
+      
+      - name: import-solution
+        uses: microsoft/powerplatform-actions/import-solution@0.4.3
+        with:
+          environment-url: ${{ secrets.ENVIRONMENT_URL }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          app-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          solution-file: ${{ env.solution_src_root }}/bin/Release/${{ env.solution_name }}_managed.zip 
+          force-overwrite: true
+          run-asynchronously: true
