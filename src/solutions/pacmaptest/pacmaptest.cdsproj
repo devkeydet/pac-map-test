@@ -55,10 +55,14 @@
     <ProjectReference Include="plugins\pacmaptest.plugins\pacmaptest.plugins.csproj" />
   </ItemGroup>
 
-  <Target Name="CopyPluginAssembly" AfterTargets="ResolveReferences">
+  <ItemGroup>
+    <pacmaptestplugins Include="plugins\pacmaptest.plugins\bin\$(Configuration)\**\pacmaptest.plugins.dll"/>
+  </ItemGroup>
+
+  <Target Name="CopyPluginAssemblies" AfterTargets="ResolveReferences">
     <Message Text="Copying plugin assembly..." Importance="high"/>
     <Copy
-      SourceFiles="plugins\pacmaptest.plugins\bin\Release\net462\pacmaptest.plugins.dll"
+      SourceFiles="@(pacmaptestplugins)"
       DestinationFiles="unpacked-solution\PluginAssemblies\pacmaptestplugins-D17FD708-BAF5-4441-8261-0099CC098DE7\pacmaptestplugins.dll" />
   </Target>
 
