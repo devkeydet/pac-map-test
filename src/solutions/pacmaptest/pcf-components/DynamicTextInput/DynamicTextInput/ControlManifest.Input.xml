@@ -62,7 +62,7 @@
     <resources>
       <code path="index.ts" order="1"/>
       <css path="css/DynamicTextInput.css" order="1" />
-      <resx path="strings\DynamicTextInput.1033.resx" version="1.0.0" />
+      <resx path="strings/DynamicTextInput.1033.resx" version="1.0.0" />
     </resources>
     <!-- UNCOMMENT TO ENABLE THE SPECIFIED API
     <feature-usage>
