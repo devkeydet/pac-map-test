@@ -18,8 +18,11 @@ jobs:
         shell: pwsh
         run: |
           $currentDirectory = Get-Location
-          cd $env:solution_src_root/pcf-components/DynamicTextInput
-          npm install
+          $componentFolders = Get-ChildItem $env:solution_src_root/pcf-components
+          foreach ($componentFolder in $componentFolders) {
+            cd $componentFolder.FullName
+            npm install
+          }
           cd $currentDirectory
           dotnet build $env:solution_src_root -c release
       
